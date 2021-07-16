@@ -9,26 +9,26 @@ namespace CoinChangeProblem
     {
 
         #region Declarations 
-        private int[] coinDenominations; // Empty array to hold values
+        private int[] coinDenominations; // Empty array to hold coin denominations values
         public double Change { get; set; } // Set Change amount Total for accessibility
 
         int i;
 
         #endregion
 
-        #region VendingMachine
+        #region Vending Machine
         /// <summary>
         /// Vending Machine Method with coin arrays parameter.. 
         /// </summary>
         /// <param name="coins"></param>
         public VendingMachine(int[] coins)
         {
-            coinDenominations = coins; // 
+            coinDenominations = coins; // coins array holder
         }
 
         #endregion
 
-        #region CalculateChange
+        #region Calculate Change
         /// <summary>
         /// Calculate Change
         /// </summary>
@@ -60,7 +60,7 @@ namespace CoinChangeProblem
 
         #endregion
 
-        #region CountChangePossibilities
+        #region Count Change Possibilities
 
         /// <summary>
         ///  Unit Test - total count
@@ -84,6 +84,33 @@ namespace CoinChangeProblem
             return total; // Return counts for various Unit Test 
         }
         #endregion
+
+        #region write Calculated Change Console Lines
+        /// <summary>
+        /// Write Calculated Change to Console Lines
+        /// </summary>
+        /// <param name="purch"></param>
+        /// <param name="tender"></param>
+        /// <param name="coinDenominations"></param>
+        /// <param name="currencyTitle"></param>
+
+        public void writeCalculatedChangeConsoleLines(double purch, double tender, int[] coinDenominations, string currencyTitle)
+        {
+            Array.Reverse(coinDenominations);// reverse array for pound coins           
+           // var machineDollar = new VendingMachine(coinDenominationsUSDollar);
+            var machine = new VendingMachine(coinDenominations);
+            var purchaseAmount = purch; // amount the item cost
+            var tenderAmount = tender; // amount the user input for the purchase
+            var change = machine.CalculateChange(purchaseAmount, tenderAmount); // expect 65 cents
+            Console.WriteLine($"" + currencyTitle + " Total change amount = " + machine.Change + "");
+            // Loop through data and write lines
+            for (int val = 0; val < change.Count; val++)
+            {
+                Console.WriteLine($"Change[{val}] = {change[val]}");// Add the calculated values peer change count
+            }
+        }
+        #endregion
+
     }
 }
 
