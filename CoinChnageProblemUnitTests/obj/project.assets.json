@@ -6928,11 +6928,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\CoinChangeProblem\\CoinChnageProblemUnitTests\\CoinChnageProblemUnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\CoinChangeProblem\\CoinChnageProblemUnitTests\\CoinChnageProblemUnitTests.csproj",
       "projectName": "CoinChnageProblemUnitTests",
-      "projectPath": "C:\\Users\\User\\Source\\Repos\\CoinChangeProblem\\CoinChnageProblemUnitTests\\CoinChnageProblemUnitTests.csproj",
+      "projectPath": "C:\\Users\\User\\source\\repos\\CoinChangeProblem\\CoinChnageProblemUnitTests\\CoinChnageProblemUnitTests.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Source\\Repos\\CoinChangeProblem\\CoinChnageProblemUnitTests\\obj\\",
+      "outputPath": "C:\\Users\\User\\source\\repos\\CoinChangeProblem\\CoinChnageProblemUnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -6952,8 +6952,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\User\\Source\\Repos\\CoinChangeProblem\\CoinChangeProblem\\CoinChangeProblem.csproj": {
-              "projectPath": "C:\\Users\\User\\Source\\Repos\\CoinChangeProblem\\CoinChangeProblem\\CoinChangeProblem.csproj"
+            "C:\\Users\\User\\source\\repos\\CoinChangeProblem\\CoinChangeProblem\\CoinChangeProblem.csproj": {
+              "projectPath": "C:\\Users\\User\\source\\repos\\CoinChangeProblem\\CoinChangeProblem\\CoinChangeProblem.csproj"
             }
           }
         }
