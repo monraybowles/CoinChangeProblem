@@ -9,17 +9,21 @@ namespace CoinChangeProblem
     {
 
         #region Declarations 
-        private int[] coinDenominations;
-        public double Change { get; set; }
+        private int[] coinDenominations; // Empty array to hold values
+        public double Change { get; set; } // Set Change amount Total for accessibility
 
         int i;
 
         #endregion
 
         #region VendingMachine
+        /// <summary>
+        /// Vending Machine Method with coin arrays parameter.. 
+        /// </summary>
+        /// <param name="coins"></param>
         public VendingMachine(int[] coins)
         {
-            coinDenominations = coins;
+            coinDenominations = coins; // 
         }
 
         #endregion
@@ -33,11 +37,14 @@ namespace CoinChangeProblem
         /// <returns></returns>
         public List<int> CalculateChange(double purchaseAmount, double tenderAmount)
         {
-            var change = new List<int>();
-            var changeAmount = tenderAmount - purchaseAmount;
-            changeAmount = Math.Round(changeAmount * 100, 2);
-            Change = changeAmount;
+
+           
+            var change = new List<int>(); // Create new integer List to hold calculated coin denominations 
+            var changeAmount = tenderAmount - purchaseAmount; // subtract amounts
+            changeAmount = Math.Round(changeAmount * 100, 2); // round off change amount
+            Change = changeAmount; // set Change to re-use in the total in the program start up main
             var count = 0;
+            // Iterate through all coin Denominations
             for (i = 0; i < coinDenominations.Length; i++)
             {
                 count = (int)changeAmount / coinDenominations[i];
@@ -48,7 +55,7 @@ namespace CoinChangeProblem
                     }
                 changeAmount %= coinDenominations[i];
             }
-            return change;
+            return change; // Return Calculation from Loop
         }
 
         #endregion
@@ -64,21 +71,17 @@ namespace CoinChangeProblem
         /// <returns></returns>
         public static int CountChangePossibilities(double purch, double tender, int[] coinDenominations)
         {
-            var total = 0;          
+            var total = 0;  // reset total each time method is called        
             var machine = new VendingMachine(coinDenominations);
             var purchaseAmount = purch; // amount the item cost
             var tenderAmount = tender; // amount the user input for the purchase
             var change = machine.CalculateChange(purchaseAmount, tenderAmount); // expect 65 cents
             List<int> results = new List<int>();
-
             for (int val = 0; val < change.Count; val++)
             {
                 total += 1;                     
             }
-
-            return total;
-
-
+            return total; // Return counts for various Unit Test 
         }
         #endregion
     }
