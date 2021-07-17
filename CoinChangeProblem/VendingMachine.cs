@@ -11,19 +11,17 @@ namespace CoinChangeProblem
         #region Static Data Settings
         public static class DataSettings
         {
-
-            const int currencies = 2;
-            const int arrayDimensionColumnSize = 3;
+            const int currencies = 2; // extend your currency array here 
+            const int arrayDimensionColumnSize = 3; // extent your array coloumn size here to add an additional dimension
           
-            public static string[] currencieTitles = new string[] { "(USD)", "(POUND" };
-            public static string[] purchaseAmounts = new string[] { "1.35", "1.35" };
-            public static string[] tenderAmounts = new string[] { "2.00", "4.00" };  
+            public static string[] currencieTitles = new string[] { "[USD]", "[POUND]" };// add country currencies here 
+            public static string[] purchaseAmounts = new string[] { "1.35", "1.35" };// add countries purchase amounts here 
+            public static string[] tenderAmounts = new string[] { "2.00", "4.00" };  // add tender amounts here 
             public static string[,] currencyData = new string[currencies, arrayDimensionColumnSize] { { currencieTitles[0], purchaseAmounts[0], tenderAmounts[0] }, { currencieTitles[1], purchaseAmounts[1], tenderAmounts[1] } };
 
-            public static int[] coinDenominations;
-            public static int[] coinDenominationsPound = new int[] { 1, 2, 5, 10, 20, 50 };
-            public static int[] coinDenominationsUSDollar = new int[] { 1, 5, 10, 25 };
-
+            public static int[] coinDenominations; // coin holder 
+            public static int[] coinDenominationsPound = new int[] { 1, 2, 5, 10, 20, 50 }; // coin currencies for Pound 
+            public static int[] coinDenominationsUSDollar = new int[] { 1, 5, 10, 25 }; // coin currencies USD
         }
 
         #endregion
@@ -127,7 +125,7 @@ namespace CoinChangeProblem
             // Loop through data and write lines
             for (int val = 0; val < change.Count; val++)
             {
-                Console.WriteLine($"Change[{val}] = {change[val]}");// Add the calculated values peer change count
+                Console.WriteLine($"Change[{val}] = {change[val]}");// Add the calculated values per change count
             }
         }
         #endregion
