@@ -8,15 +8,30 @@ namespace CoinChangeProblem
 {
     public class VendingMachine
     {
+        #region Static Data Settings
+        public static class DataSettings
+        {
 
-        #region Declarations 
+            const int currencies = 2;
+            const int arrayDimensionColumnSize = 3;
+          
+            public static string[] currencieTitles = new string[] { "(USD)", "(POUND" };
+            public static string[] purchaseAmounts = new string[] { "1.35", "1.35" };
+            public static string[] tenderAmounts = new string[] { "2.00", "4.00" };  
+            public static string[,] currencyData = new string[currencies, arrayDimensionColumnSize] { { currencieTitles[0], purchaseAmounts[0], tenderAmounts[0] }, { currencieTitles[1], purchaseAmounts[1], tenderAmounts[1] } };
 
-        private int[] coinDenominations; // Empty array to hold coin denominations values
-        public double Change { get; set; } // Set Change amount Total for accessibility
+            public static int[] coinDenominations;
+            public static int[] coinDenominationsPound = new int[] { 1, 2, 5, 10, 20, 50 };
+            public static int[] coinDenominationsUSDollar = new int[] { 1, 5, 10, 25 };
 
-        int[] coinDenominationsPound = new int[] { 1, 2, 5, 10, 20, 50 }; // coin denominations – US Dollar
-        int[] coinDenominationsUSDollar = new int[] { 1, 5, 10, 25 }; // coin denominations – Pound
-       
+        }
+
+        #endregion
+
+        #region Properties
+
+        public static double Change { get; set; }
+
 
         #endregion
 
@@ -27,7 +42,7 @@ namespace CoinChangeProblem
         /// <param name="coins"></param>
         public VendingMachine(int[] coins)
         {
-            coinDenominations = coins; // coins array holder
+            DataSettings.coinDenominations = coins; // coins array holder
         }
 
         #endregion
@@ -49,15 +64,15 @@ namespace CoinChangeProblem
             Change = changeAmount; // set Change to re-use in the total in the program start up main
             var count = 0;
             // Iterate through all coin Denominations
-            for (int i = 0; i < coinDenominations.Length; i++)
+            for (int i = 0; i < DataSettings.coinDenominations.Length; i++)
             {
-                count = (int)changeAmount / coinDenominations[i];
+                count = (int)changeAmount / DataSettings.coinDenominations[i];
                 if (count != 0)
                     for (int x = 0; x < count; x++)
                     {
-                        change.Add(coinDenominations[i]);
+                        change.Add(DataSettings.coinDenominations[i]);
                     }
-                changeAmount %= coinDenominations[i];
+                changeAmount %= DataSettings.coinDenominations[i];
             }
             return change; // Return Calculation from Loop
         }
@@ -103,10 +118,12 @@ namespace CoinChangeProblem
             Array.Reverse(coinDenominations);// reverse array for pound coins           
            // var machineDollar = new VendingMachine(coinDenominationsUSDollar);
             var machine = new VendingMachine(coinDenominations);
+            
             var purchaseAmount = purch; // amount the item cost
             var tenderAmount = tender; // amount the user input for the purchase
             var change = machine.CalculateChange(purchaseAmount, tenderAmount); // expect 65 cents
-            Console.WriteLine($"" + currencyTitle + " Total change amount = " + machine.Change + "");
+            Console.WriteLine($"" + currencyTitle + " Total change amount = " + Change + "");
+            Console.WriteLine($"  "); // add blank line
             // Loop through data and write lines
             for (int val = 0; val < change.Count; val++)
             {
@@ -115,7 +132,7 @@ namespace CoinChangeProblem
         }
         #endregion
 
-        #region write Calculated Change Console Lines
+        #region write Calculated Change Console Lines By Currencies
         public void writeConsoleLinesByCurrencies(string[,] array2Db)
         {
             int currencyTitle = 0;
@@ -140,23 +157,41 @@ namespace CoinChangeProblem
         }
         #endregion
 
-        #region currency Lookup
-
+        #region Currency Helpers 
+        /// <summary>
+        /// Currency Helper settings 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public int[] currencyLookup(int value)
         {
           
-            int[] CoinHolder = null; // 
-            if (value == 0)
+            int[] CoinHolder = null; // empty int array 
+
+            switch (value)
             {
-                CoinHolder = coinDenominationsUSDollar;
+                case 0:
+                    // code block
+                    CoinHolder = DataSettings.coinDenominationsUSDollar;
+                    break;
+                case 1:
+                    // code block
+                    CoinHolder = DataSettings.coinDenominationsPound;
+                    break;              
             }
-            if (value == 1)
-            {
-                CoinHolder = coinDenominationsPound;
-            }
+          
             return CoinHolder;
         }
+
+        public string[,] getVendingMachineData()
+        {
+            // currency, purchaseAmount, tenderAmount 2D arrays
+            string[,] UserTenderCurrencieAmounts = DataSettings.currencyData;
+
+            return UserTenderCurrencieAmounts;
+        }
         #endregion
+
     }
 }
 
