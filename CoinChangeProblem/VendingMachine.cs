@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 
 namespace CoinChangeProblem
@@ -9,10 +10,13 @@ namespace CoinChangeProblem
     {
 
         #region Declarations 
+
         private int[] coinDenominations; // Empty array to hold coin denominations values
         public double Change { get; set; } // Set Change amount Total for accessibility
 
-        int i;
+        int[] coinDenominationsPound = new int[] { 1, 2, 5, 10, 20, 50 }; // coin denominations – US Dollar
+        int[] coinDenominationsUSDollar = new int[] { 1, 5, 10, 25 }; // coin denominations – Pound
+       
 
         #endregion
 
@@ -45,7 +49,7 @@ namespace CoinChangeProblem
             Change = changeAmount; // set Change to re-use in the total in the program start up main
             var count = 0;
             // Iterate through all coin Denominations
-            for (i = 0; i < coinDenominations.Length; i++)
+            for (int i = 0; i < coinDenominations.Length; i++)
             {
                 count = (int)changeAmount / coinDenominations[i];
                 if (count != 0)
@@ -111,6 +115,48 @@ namespace CoinChangeProblem
         }
         #endregion
 
+        #region write Calculated Change Console Lines
+        public void writeConsoleLinesByCurrencies(string[,] array2Db)
+        {
+            int currencyTitle = 0;
+            int tenAmount = 1;
+            int purAmount = 2;
+            int[] CurrencyHolder;
+
+
+            for (int i = 0; i < array2Db.Rank; i++)
+            {
+                CurrencyHolder = currencyLookup(i);
+                if (CurrencyHolder != null)
+                {
+                    Console.WriteLine($"--------------------------------------- " + array2Db[i, currencyTitle] + ""); // PRINT HEADER # 1
+                    Console.WriteLine($"  ");
+                    writeCalculatedChangeConsoleLines(Convert.ToDouble(array2Db[i, tenAmount]), Convert.ToDouble(array2Db[i, purAmount]), CurrencyHolder, array2Db[i, currencyTitle]);
+                    Console.WriteLine($"  ");
+                }               
+
+            }
+
+        }
+        #endregion
+
+        #region currency Lookup
+
+        public int[] currencyLookup(int value)
+        {
+          
+            int[] CoinHolder = null; // 
+            if (value == 0)
+            {
+                CoinHolder = coinDenominationsUSDollar;
+            }
+            if (value == 1)
+            {
+                CoinHolder = coinDenominationsPound;
+            }
+            return CoinHolder;
+        }
+        #endregion
     }
 }
 
