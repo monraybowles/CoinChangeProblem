@@ -16,7 +16,7 @@ namespace CoinChangeProblem
           
             public static string[] currencieTitles = new string[] { "[USD]", "[POUND]" };// add country currencies here 
             public static string[] purchaseAmounts = new string[] { "1.35", "1.35" };// add countries purchase amounts here 
-            public static string[] tenderAmounts = new string[] { "2.00", "4.00" };  // add tender amounts here 
+            public static string[] tenderAmounts = new string[] { "2.00", "2.00" };  // add tender amounts here 
             public static string[,] currencyData = new string[currencies, arrayDimensionColumnSize] { { currencieTitles[0], purchaseAmounts[0], tenderAmounts[0] }, { currencieTitles[1], purchaseAmounts[1], tenderAmounts[1] } };
 
             public static int[] coinDenominations; // coin holder 
@@ -137,6 +137,7 @@ namespace CoinChangeProblem
             int tenAmount = 1;
             int purAmount = 2;
             int[] CurrencyHolder;
+
 
 
             for (int i = 0; i < array2Db.Rank; i++)
